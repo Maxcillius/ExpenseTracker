@@ -2,7 +2,7 @@ import avatar from '../../assets/avatar.jpeg';
 
 export default function Avatar() {
     return (
-        <div className='flex flex-row justify-center gap-3'>
+        <div className='flex flex-row justify-center gap-3 hover:cursor-pointer'>
             <div>
                 <img src={avatar} alt='avatar' height={100} width={40} className='rounded-full'></img>
             </div>
