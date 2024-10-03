@@ -10,7 +10,7 @@ export default function History() {
             <div className="flex flex-row justify-between">
                 <h5 className="font-semibold text-black  px-2 py-5 text-md md:text-xl">Expenses</h5>
                 <div className="flex flex-col justify-center">
-                    <button className="bg-black text-white font-semibold rounded-xl py-1 px-2 md:py-2 md:px-4 flex flex-row justify-center gap-3 text-sm md:text-md relative" onClick={() => setDropDown(!isDropDown)}>
+                    <button className="bg-black text-white font-semibold rounded-xl py-1 px-3 md:py-2 md:px-4 flex flex-row justify-center gap-1 md:gap-3 text-sm md:text-md relative" onClick={() => setDropDown(!isDropDown)}>
                         <p className='flex flex-col justify-center'>This Month</p>
                         <div className='flex flex-col justify-center'>
                             <ChevronDown />
@@ -23,21 +23,21 @@ export default function History() {
             </div>
             <div className="grid grid-cols-3 auto-rows-auto p-2">
                 <div className="flex flex-col justify-start gap-5">
-                    <p className="text-slate-500 md:text-md text-sm">Category</p>
+                    <p className="text-slate-500 md:text-lg text-sm">Category</p>
                     <div className="flex flex-col justify-start">
-                        <p className="font-bold text-black md:text-md text-sm">1. Food</p>
+                        <p className="font-bold text-black md:text-lg text-sm">1. Food</p>
                     </div>
                 </div>
                 <div className="flex flex-col justify-start gap-5">
-                    <p className="text-slate-500 md:text-md text-sm">Amount</p>
+                    <p className="text-slate-500 md:text-lg text-sm">Amount</p>
                         <div className="flex flex-col justify-start">
-                            <p className="font-bold text-black md:text-md text-sm">$60.00</p>
+                            <p className="font-bold text-black md:text-lg text-sm">$60.00</p>
                         </div>
                 </div>
                 <div className="flex flex-col justify-start gap-5">
-                    <p className="text-slate-500 md:text-md text-sm">Date</p>
+                    <p className="text-slate-500 md:text-lg text-sm">Date</p>
                         <div className="flex flex-col justify-start">
-                            <p className="font-bold text-black md:text-md text-sm">14 Aug 2023</p>
+                            <p className="font-bold text-black md:text-lg text-sm">14 Aug 2023</p>
                         </div>
                 </div>
             </div>
