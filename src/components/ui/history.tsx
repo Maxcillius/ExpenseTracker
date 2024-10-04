@@ -4,7 +4,7 @@ import { useState } from 'react';
 export default function History() {
 
     const [ isDropDown, setDropDown ] = useState(false);
-    const [ transactions, setTransactions ] = useState([
+    const transactions = [
         {
             id: 1,
             category: 'Food',
@@ -22,8 +22,7 @@ export default function History() {
             category: 'Rent',
             amount: 800,
             date: '26 sept 2024'
-        },
-    ]);
+        }]
 
     return (
         <div className="border-2 border-gray-300 rounded-xl p-4">
