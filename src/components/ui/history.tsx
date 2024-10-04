@@ -50,7 +50,7 @@ export default function History() {
                         {
                             transactions.map((data) => {
                                 return (
-                                    <p className="font-semibold text-slate-700 md:text-lg text-sm">{data.id}. {data.category}</p>
+                                    <p key={data.id} className="font-semibold text-slate-700 md:text-lg text-sm">{data.id}. {data.category}</p>
                                 )
                             })
                         }
@@ -62,7 +62,7 @@ export default function History() {
                             {
                                 transactions.map((data) => {
                                     return (
-                                        <p className="font-semibold text-slate-700 md:text-lg text-sm">${data.amount}</p>
+                                        <p key={data.id} className="font-semibold text-slate-700 md:text-lg text-sm">${data.amount}</p>
                                     )
                                 })
                             }
@@ -74,7 +74,7 @@ export default function History() {
                             {
                                 transactions.map((data) => {
                                     return (
-                                        <p className="font-semibold text-slate-700 md:text-lg text-sm">{data.date}</p>
+                                        <p key={data.id} className="font-semibold text-slate-700 md:text-lg text-sm">{data.date}</p>
                                     )
                                 })
                             }

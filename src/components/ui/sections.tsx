@@ -11,51 +11,51 @@ export default function Sections() {
     return (
         <ul className="flex flex-col justify-center gap-1">
             <li className='flex flex-row justify-start gap-3 p-2'>
-                <div className='flex flex-row justify-start pl-10 gap-3 p-4 w-full hover:cursor-pointer hover:bg-black rounded-2xl group'>
-                   <LayoutDashboard className='text-[#81858c] group-hover:text-white'/>
-                    <p className='text-black group-hover:text-white'>Dashboard</p>
+                <div className='flex flex-row justify-start md:pl-10 gap-3 p-4 w-full hover:cursor-pointer hover:bg-black rounded-2xl group'>
+                   <LayoutDashboard className='text-[#81858c] group-hover:text-white size-4 md:size-6'/>
+                    <p className='text-black group-hover:text-white text-[10px] md:text-lg'>Dashboard</p>
                 </div>
             </li>
             <li className='flex flex-row justify-start gap-3 p-2'>
-                <div className='flex flex-row justify-start pl-10 gap-3 p-4 w-full hover:cursor-pointer hover:bg-black rounded-2xl group'>
-                   <Wallet className='text-[#81858c] group-hover:text-white'/>
-                    <p className='text-black group-hover:text-white'>My Wallets</p>
+                <div className='flex flex-row justify-start md:pl-10 gap-3 p-4 w-full hover:cursor-pointer hover:bg-black rounded-2xl group'>
+                   <Wallet className='text-[#81858c] group-hover:text-white size-4 md:size-6'/>
+                    <p className='text-black group-hover:text-white text-[10px] md:text-lg'>My Wallets</p>
                 </div>  
             </li>
             <li className='flex flex-row justify-start gap-3 p-2'>
-                <div className='flex flex-row justify-start pl-10 gap-3 p-4 w-full hover:cursor-pointer hover:bg-black rounded-2xl group'>
-                   <Store className='text-[#81858c] group-hover:text-white'/>
-                    <p className='text-black group-hover:text-white'>My Stores</p>
+                <div className='flex flex-row justify-start md:pl-10 gap-3 p-4 w-full hover:cursor-pointer hover:bg-black rounded-2xl group'>
+                   <Store className='text-[#81858c] group-hover:text-white size-4 md:size-6'/>
+                    <p className='text-black group-hover:text-white text-[10px] md:text-lg'>My Stores</p>
                 </div>  
             </li>
             <li className='flex flex-row justify-start gap-3 p-2'>
-                <div className='flex flex-row justify-start pl-10 gap-3 p-4 w-full hover:cursor-pointer hover:bg-black rounded-2xl group'>
-                   <ChartPie className='text-[#81858c] group-hover:text-white'/>
-                    <p className='text-black group-hover:text-white'>Analysis</p>
+                <div className='flex flex-row justify-start md:pl-10 gap-3 p-4 w-full hover:cursor-pointer hover:bg-black rounded-2xl group'>
+                   <ChartPie className='text-[#81858c] group-hover:text-white size-4 md:size-6'/>
+                    <p className='text-black group-hover:text-white text-[10px] md:text-lg'>Analysis</p>
                 </div>  
             </li>
             <li className='flex flex-row justify-start gap-3 p-2'>
-                <div className='flex flex-row justify-start pl-10 gap-3 p-4 w-full hover:cursor-pointer hover:bg-black rounded-2xl group'>
-                   <BadgeRussianRuble className='text-[#81858c] group-hover:text-white'/>
-                    <p className='text-black group-hover:text-white'>Market</p>
+                <div className='flex flex-row justify-start md:pl-10 gap-3 p-4 w-full hover:cursor-pointer hover:bg-black rounded-2xl group'>
+                   <BadgeRussianRuble className='text-[#81858c] group-hover:text-white size-4 md:size-6'/>
+                    <p className='text-black group-hover:text-white text-[10px] md:text-lg'>Market</p>
                 </div>  
             </li>
             <li className='flex flex-row justify-start gap-3 p-2'>
-                <div className='flex flex-row justify-start pl-10 gap-3 p-4 w-full hover:cursor-pointer hover:bg-black rounded-2xl group'>
-                   <CreditCard className='text-[#81858c] group-hover:text-white'/>
-                    <p className='text-black group-hover:text-white'>Cards</p>
+                <div className='flex flex-row justify-start md:pl-10 gap-3 p-4 w-full hover:cursor-pointer hover:bg-black rounded-2xl group'>
+                   <CreditCard className='text-[#81858c] group-hover:text-white size-4 md:size-6'/>
+                    <p className='text-black group-hover:text-white text-[10px] md:text-lg'>Cards</p>
                 </div>  
             </li>
             <li className='flex flex-row justify-start -3 p-2'>
-                <div className='flex flex-row justify-start pl-10 gap-3 p-4 w-full hover:cursor-pointer hover:bg-black rounded-2xl group'>
-                   <FolderSync className='text-[#81858c] group-hover:text-white'/>
-                    <p className='text-black group-hover:text-white'>Transfer</p>
+                <div className='flex flex-row justify-start md:pl-10 gap-3 p-4 w-full hover:cursor-pointer hover:bg-black rounded-2xl group'>
+                   <FolderSync className='text-[#81858c] group-hover:text-white size-4 md:size-6'/>
+                    <p className='text-black group-hover:text-white text-[10px] md:text-lg'>Transfer</p>
                 </div>  
             </li>
             <li className='flex flex-row justify-start gap-3 p-2'>
-                <div className='flex flex-row justify-start pl-10 gap-3 p-4 w-full hover:cursor-pointer hover:bg-black rounded-2xl group'>
-                   <Settings className='text-[#81858c] group-hover:text-white'/>
-                    <p className='text-black group-hover:text-white'>Setting</p>
+                <div className='flex flex-row justify-start md:pl-10 gap-3 p-4 w-full hover:cursor-pointer hover:bg-black rounded-2xl group'>
+                   <Settings className='text-[#81858c] group-hover:text-white size-4 md:size-6'/>
+                    <p className='text-black group-hover:text-white text-[10px] md:text-lg'>Setting</p>
                 </div>  
             </li>
         </ul>
