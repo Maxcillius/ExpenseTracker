@@ -1,35 +1,49 @@
 import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
+import Expenses from '../../types/expenses';
+import { categoryNameMap } from '../../atoms/Data';
+import { useRecoilValue } from 'recoil';
+import { Trash2 } from 'lucide-react';
+import { Pencil } from 'lucide-react';
+import axios from 'axios';
 
-export default function History() {
+export default function History({ transactions, getExpenses }: { transactions: Expenses[], getExpenses: () => void }) {
 
     const [ isDropDown, setDropDown ] = useState(false);
-    const transactions = [
-        {
-            id: 1,
-            category: 'Food',
-            amount: 60,
-            date: '14 Aug 2024'
-        },
-        {
-            id: 2,
-            category: 'Clothes',
-            amount: 120,
-            date: '08 May 2024'
-        },
-        {
-            id: 3,
-            category: 'Rent',
-            amount: 800,
-            date: '26 sept 2024'
-        }]
+    const categoriesNameMap = useRecoilValue(categoryNameMap);
+
+
+    const handleDeleteExpense = (id: number) => {
+        try {
+            const response = async () => {
+                await axios.post('http://localhost:3000/api/v1/user/expense/delete', {
+                    id: id
+                }, 
+                {
+                    withCredentials: true
+                })
+
+                getExpenses();
+
+            }
+
+            response();
+        
+        } catch(error) {
+            console.log(error);
+        }
+    }
+
+    const handleEditExpense = () => {
+
+    }
 
     return (
         <div className="border-2 border-gray-300 rounded-xl p-4">
             <div className="flex flex-row justify-between">
                 <h5 className="font-semibold text-black  px-2 py-5 text-md md:text-xl">Expenses</h5>
                 <div className="flex flex-col justify-center">
-                    <button className="bg-black text-white font-semibold rounded-xl py-1 px-3 md:py-2 md:px-4 flex flex-row justify-center gap-1 md:gap-3 text-sm md:text-md relative" onClick={() => setDropDown(!isDropDown)}>
+                    <button className='bg-black text-white rounded-lg font-semibold py-1 px-3 md:py-2 md:px-4 flex flex-row justify-center gap-1 md:gap-3 text-sm md:text-md relative' onClick={() => setDropDown(!isDropDown)}>
                         <p className='flex flex-col justify-center'>This Month</p>
                         <div className='flex flex-col justify-center'>
                             <ChevronDown />
@@ -50,7 +64,7 @@ export default function History() {
                         {
                             transactions.map((data) => {
                                 return (
-                                    <p key={data.id} className="font-semibold text-slate-700 md:text-lg text-sm">{data.id}. {data.category}</p>
+                                    <p key={data.id} className="font-semibold text-slate-700 md:text-lg text-sm">{categoriesNameMap.get(data.category_id)}</p>
                                 )
                             })
                         }
@@ -74,7 +88,13 @@ export default function History() {
                             {
                                 transactions.map((data) => {
                                     return (
-                                        <p key={data.id} className="font-semibold text-slate-700 md:text-lg text-sm">{data.date}</p>
+                                        <div className='flex flex-row justify-between'>
+                                            <p key={data.id} className="font-semibold text-slate-700 md:text-lg text-sm">{`${data.date}`}</p>
+                                            <div className='flex flex-row justify-center gap-10'>
+                                                <Pencil size={20} color='blue' className='hover:cursor-pointer' onClick={() => {handleEditExpense()}}/>
+                                                <Trash2 color='red' size={20} className='hover:cursor-pointer' onClick={() => {handleDeleteExpense(data.id)}}/>
+                                            </div>
+                                        </div>
                                     )
                                 })
                             }
@@ -88,21 +108,9 @@ export default function History() {
 function DropDown() {
     return (
         <>
-            {/* <ul className='absolute bg-black w-full mt-8 flex flex-col justify-center'>
-                <li className='p-2'>Jan</li>
-                <li className='p-2'>Feb</li>
-                <li className='p-2'>March</li>
-                <li className='p-2'>Apr</li>
-                <li className='p-2'>May</li>
-                <li className='p-2'>Jun</li>
-                <li className='p-2'>Jul</li>
-                <li className='p-2'>Aug</li>
-                <li className='p-2'>Sept</li>
-                <li className='p-2'>Oct</li>
-                <li className='p-2'>Nov</li>
-                <li className='p-2'>Dec</li>
-
-            </ul> */}
+            <ul className='absolute bg-black mt-9 flex flex-col justify-center overflow-y-scroll w-full h-36'>
+                <li>Coming soon</li>
+            </ul>
         </>
     )
 }

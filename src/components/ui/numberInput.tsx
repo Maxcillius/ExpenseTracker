@@ -1,4 +1,5 @@
 export default function NumberInput() {
+
     return (
         <form className="max-w-xs mx-auto flex flex-col justify-center">
             <div className="relative flex items-center max-w-[8rem]">
