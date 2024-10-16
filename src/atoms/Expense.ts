@@ -20,9 +20,5 @@ export const descriptionAtom = atom({
 
 export const dateAtom = atom({
     key: 'dateAtom',
-    default: {
-        day: '',
-        month: '',
-        year: '',
-    }
+    default: ''
 })

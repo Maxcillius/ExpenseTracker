@@ -16,10 +16,11 @@ export default function AddExpense({getExpenses} : {getExpenses: () => void}) {
     const category = useRecoilValue(categoryAtom);
     const [ amount, setAmount ] = useRecoilState(amountAtom);
     const [ descripion, setDescription ] = useRecoilState(descriptionAtom);
-    const [ date, setDate ] = useRecoilState(dateAtom);
+    const [ inputDate, setDate ] = useRecoilState(dateAtom);
     const setCategories = useSetRecoilState(categoriesAtom);
     const setCategoryMap = useSetRecoilState(categoryNameMap);
     const [ emptyAmount, setEmptyAmount ] = useState(false);
+    const [ emptyCategory, setEmptyCategory ] = useState(false);
 
     // Prevent showing alphabets
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -74,14 +75,24 @@ export default function AddExpense({getExpenses} : {getExpenses: () => void}) {
             setTimeout(() => {
                 setEmptyAmount(false);
             }, 1000)
+            return;
+        }
+        if(category.name === 'Category') {
+            setEmptyCategory(true);
+            setTimeout(() => {
+                setEmptyCategory(false);
+            }, 1000)
+            return;
         }
 
        try {
-            const { data } = await axios.post('http://localhost:3000/api/v1/user/expense/add', 
+
+            const { data } = await axios.post('http://localhost:3000/api/v1/user/expense/add',
+
                 {
                     amount: amount,
                     description: descripion,
-                    date: '14 aug 2024',
+                    date: inputDate,
                     payment_method: 'Cash',
                     category_id: category.id,
                 },
@@ -109,7 +120,7 @@ export default function AddExpense({getExpenses} : {getExpenses: () => void}) {
                 <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-2">
                     <div className="flex md:flex-row justify-center gap-2 md:gap-5">
                         <div className="flex flex-col justify-start">
-                            <div onClick={() => {setCatDropDown(!catDropDown)}} className={`relative flex flex-col justify-center px-2 w-40 h-full md:px-10 border-2 border-gray-300 rounded-xl hover:cursor-pointer hover:border-black`}>
+                            <div onClick={() => {setCatDropDown(!catDropDown)}} className={`relative flex flex-col justify-center px-2 w-40 h-full md:px-10 border-2 ${emptyCategory ? 'border-red-600' : 'border-gray-300'} rounded-xl hover:cursor-pointer hover:border-black`}>
                                 <div className="flex flex-row text-sm md:text-md justify-center gap-1 md:gap-3">
                                     <p className="flex flex-col justify-center">
                                         {category.name}
@@ -137,11 +148,7 @@ export default function AddExpense({getExpenses} : {getExpenses: () => void}) {
                         <div className="flex flex-col justify-center collapse md:visible">
                             <DatePicker onChange={(e) => {
                                 if(e) {
-                                    setDate({
-                                        day: e?.get('day').toString(),
-                                        month: e?.get('month').toString(),
-                                        year: e?.get('year').toString()
-                                    })
+                                    setDate(e?.toDate().toDateString())
                                 }
                             }} defaultValue={dayjs('2022-04-17')} />
                         </div>
@@ -150,11 +157,7 @@ export default function AddExpense({getExpenses} : {getExpenses: () => void}) {
                         <div className="flex flex-col justify-center visible md:hidden">
                             <DatePicker onChange={(e) => {
                                 if(e) {
-                                    setDate({
-                                        day: e?.get('day').toString(),
-                                        month: e?.get('month').toString(),
-                                        year: e?.get('year').toString()
-                                    })
+                                    setDate(e?.toDate().toDateString())
                                 }
                             }} defaultValue={dayjs('2022-04-17')} />
                         </div>
