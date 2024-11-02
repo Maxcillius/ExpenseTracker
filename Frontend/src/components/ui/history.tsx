@@ -5,7 +5,9 @@ import { categoryNameMap } from '../../atoms/Data'
 import { useRecoilValue } from 'recoil'
 import { Trash2 } from 'lucide-react'
 import { IndianRupee } from 'lucide-react'
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
+import { Toaster, toast } from 'sonner'
+import MyErrorResponse from '../../types/Error'
 
 type FilterType = 'Daily' | 'Monthly' | 'Yearly'
 
@@ -96,7 +98,11 @@ const ExpenseHistory: React.FC<ExpenseHistoryProps> = ({ transactions, getExpens
                 `http://localhost:3000/api/v1/user/expense/delete`, 
                 { id }, 
                 { withCredentials: true }
-            )
+            ).then((data) => {
+                toast(data.data.message)
+            }).catch((data: AxiosError<MyErrorResponse>) => {
+                toast(data.response?.data.message)
+            })
             getExpenses()
         } catch(error) {
             console.error('Error deleting expense:', error)
@@ -113,6 +119,7 @@ const ExpenseHistory: React.FC<ExpenseHistoryProps> = ({ transactions, getExpens
 
     return (
         <div className="border-2 border-gray-300 rounded-xl p-4">
+            <Toaster />
             <div className="flex flex-row justify-between items-center mb-4">
                 <h5 className="font-semibold text-black px-2 text-md md:text-xl select-none">
                     Expenses

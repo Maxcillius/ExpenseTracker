@@ -5,10 +5,12 @@ import { useCallback, useEffect, useState } from "react"
 import { IndianRupee } from 'lucide-react'
 import { categoryAtom, descriptionAtom, amountAtom, dateAtom } from "../atoms/Expense"
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil"
-import axios from "axios"
+import axios, { AxiosError } from "axios"
 import Category from "../types/category"
 import { categoryNameMap } from "../atoms/Data"
 import { categoriesAtom } from "../atoms/Data"
+import { Toaster, toast } from "sonner"
+import MyErrorResponse from "../types/Error"
 
 export default function AddExpense({getExpenses} : {getExpenses: () => void}) {
 
@@ -105,7 +107,11 @@ export default function AddExpense({getExpenses} : {getExpenses: () => void}) {
                 {
                     withCredentials: true
                 }
-            )
+            ).then((data) => {
+                toast(data.data.message)
+            }).catch((data: AxiosError<MyErrorResponse>) => {
+                toast(data.response?.data.message)
+            })
 
             setAmount(0)
             setDescription('')
@@ -120,6 +126,7 @@ export default function AddExpense({getExpenses} : {getExpenses: () => void}) {
 
     return (
         <div className="h-full w-full">
+            <Toaster />
             <div className="flex flex-col justify-between p-4 gap-5">
                 <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-2">
                     <div className="flex md:flex-row justify-center gap-2 md:gap-5">
