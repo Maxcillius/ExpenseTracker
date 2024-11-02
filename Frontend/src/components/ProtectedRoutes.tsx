@@ -12,7 +12,7 @@ export default function ProtectedRoutes() {
         const checkAuthentication = async () => {
             try {
                 const { data } = await axios.get<{ isAuthenticated: boolean }>(
-                    `http://localhost:3000/api/v1/auth/user/authenticated`, 
+                    `http://3.111.68.152:3000/api/v1/auth/user/authenticated`, 
                     { withCredentials: true }
                 )
                 if (isMounted) {
