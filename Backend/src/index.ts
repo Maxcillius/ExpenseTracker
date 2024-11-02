@@ -13,7 +13,9 @@ const secret = process.env.JWT_SECRET as string
 router.use(express.json())
 router.use(cors({
     credentials: true,
-    origin: ["http://localhost:5173", "http://192.168.29.137:5173", "http://192.168.29.109:5173"]
+    origin: [
+      "http://localhost:8080",
+    ]
 }))
 router.use(session({
     secret: secret,

@@ -33,7 +33,13 @@ export default function ProtectedRoutes() {
     }, [])
 
     if (isAuthenticated === null) {
-        return <div>Loading...</div>
+        return (
+            <div className="flex flex-row justify-center h-screen w-screen">
+                <div className="flex flex-col justify-center">
+                    <h1 className="text-2xl font-semibold">Loading...</h1>
+                </div>
+            </div>
+        )
     }
 
     return isAuthenticated ? <Outlet /> : <Navigate to='/auth/signin' />

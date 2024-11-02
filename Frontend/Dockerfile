@@ -6,9 +6,14 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
+
 RUN npm run build
 
-RUN npm install -g serve
+FROM nginx:alpine as production
 
-EXPOSE 5173
-CMD ["serve", "-l", "5173", "-s", "dist"]
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=frontend-build /app/dist /usr/share/nginx/html
+
+EXPOSE 8080
+
+CMD ["nginx", "-g", "daemon off;"]
