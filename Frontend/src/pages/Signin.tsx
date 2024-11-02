@@ -14,7 +14,7 @@ export default function Signin() {
 
     const handleAuth = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        await axios.post(`http://3.111.68.152:3000/api/v1/auth/user/signin`, {
+        await axios.post(`https://3.111.68.152:3000/api/v1/auth/user/signin`, {
             email,
             password
         },
