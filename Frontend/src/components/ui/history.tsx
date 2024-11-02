@@ -95,7 +95,7 @@ const ExpenseHistory: React.FC<ExpenseHistoryProps> = ({ transactions, getExpens
     const handleDeleteExpense = async (id: number): Promise<void> => {
         try {
             await axios.post(
-                `http://localhost:3000/api/v1/user/expense/delete`, 
+                `http://3.111.68.152:3000/api/v1/user/expense/delete`, 
                 { id }, 
                 { withCredentials: true }
             ).then((data) => {
@@ -124,18 +124,18 @@ const ExpenseHistory: React.FC<ExpenseHistoryProps> = ({ transactions, getExpens
                 <h5 className="font-semibold text-black px-2 text-md md:text-xl select-none">
                     Expenses
                 </h5>
-                <div className="relative flex flex-col justify-start w-36">
+                <div className="relative flex flex-col justify-start md:w-36 w-[100px]">
                     <div 
                         onClick={() => setDropDown(!isDropDown)} 
-                        className="hover:cursor-pointer flex flex-row justify-between bg-black rounded-lg py-1 px-3 md:py-2 md:px-4"
+                        className="hover:cursor-pointer flex flex-row justify-between bg-black text-sm md:text-md rounded-lg py-1 px-3 md:py-2 md:px-4"
                     >
-                        <button className="bg-black text-white font-semibold flex items-center gap-2 w-full text-center">
+                        <button className="bg-black text-white font-semibold text-md flex items-center gap-2 w-full text-center">
                             {filter}
                         </button>
                         <ChevronDown className="text-white"/>
                     </div>
                     {isDropDown && (
-                        <ul className="absolute bg-black mt-[44px] flex flex-col justify-center overflow-y-scroll w-full min-h-fit max-h-36 gap-2 py-4 rounded-b-md">
+                        <ul className="absolute bg-black mt-[35px] md:mt-[44px] flex flex-col justify-center overflow-y-scroll w-full min-h-fit max-h-36 gap-2 py-4 rounded-b-md">
                             {filterOptions.map((filterOption) => (
                                 <li 
                                     key={filterOption}
@@ -145,7 +145,7 @@ const ExpenseHistory: React.FC<ExpenseHistoryProps> = ({ transactions, getExpens
                                     }} 
                                     className={`hover:bg-white hover:text-black text-center 
                                         ${filter === filterOption ? 'text-black bg-white' : 'text-white'} 
-                                        hover:cursor-pointer font-semibold`}
+                                        hover:cursor-pointer font-semibold text-[13px] md:text-[15px]`}
                                 >
                                     {filterOption}
                                 </li>
@@ -157,16 +157,16 @@ const ExpenseHistory: React.FC<ExpenseHistoryProps> = ({ transactions, getExpens
 
             <div className="space-y-6 min-h-[200px] max-h-[600px] overflow-y-scroll">
                 {Object.keys(groupedTransactions).length === 0 ? (
-                    <div className="text-center text-gray-500 py-8">
+                    <div className="text-center text-gray-500 py-8 text-sm md:text-lg">
                         No expenses found
                     </div>
                 ) : (
                     Object.entries(groupedTransactions).map(([groupKey, expenses]) => (
                         <div key={groupKey} className="space-y-4">
                             <div className="flex justify-between items-center">
-                                <h3 className="font-semibold text-gray-700">{groupKey}</h3>
-                                <p className="text-gray-600 font-medium">
-                                    Total: <IndianRupee className="inline mb-1" size={16} />
+                                <h3 className="font-semibold text-gray-700 text-sm md:text-lg">{groupKey}</h3>
+                                <p className="text-gray-600 font-medium text-sm md:text-lg">
+                                    Total: <IndianRupee className="inline mb-1 size-3 md:size-4" />
                                     {calculateGroupTotal(expenses)}
                                 </p>
                             </div>
@@ -179,7 +179,7 @@ const ExpenseHistory: React.FC<ExpenseHistoryProps> = ({ transactions, getExpens
                                     <div className="flex flex-col justify-center w-full">
                                         <div className="flex flex-row items-center justify-between w-full">
                                             <div className="flex flex-col">
-                                                <p className="font-semibold text-slate-700 text-lg">
+                                                <p className="font-semibold text-slate-700 text-sm md:text-lg">
                                                     {categoriesNameMap.get(data.category_id)}
                                                 </p>
                                                 {filter === 'Monthly' || filter === 'Yearly' ? (
@@ -189,13 +189,12 @@ const ExpenseHistory: React.FC<ExpenseHistoryProps> = ({ transactions, getExpens
                                                 ) : null}
                                             </div>
                                             <div className="flex items-center gap-3">
-                                                <p className="flex items-center font-semibold text-slate-700 text-lg">
-                                                    <IndianRupee size={20} className="mr-1" /> {data.amount}
+                                                <p className="flex items-center font-semibold text-slate-700 text-sm md:text-lg">
+                                                    <IndianRupee className="md:mr-1 size-3 md:size-5" /> {data.amount}
                                                 </p>
                                                 <Trash2
                                                     color="red"
-                                                    size={20}
-                                                    className="hover:cursor-pointer"
+                                                    className="hover:cursor-pointer size-4 md:size-6"
                                                     onClick={(e: React.MouseEvent) => {
                                                         e.stopPropagation()
                                                         handleDeleteExpense(data.id)

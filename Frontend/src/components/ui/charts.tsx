@@ -72,8 +72,8 @@ export default function Charts({ dataset }: { dataset: Expenses[]}) {
   }
 
   return (
-    <div className='flex flex-col justify-center h-[600px] p-2'>
-        <div className="chart-container xl:w-[500px] xl:h-[500px] w-[400px] h-[400px] self-center">
+    <div className='flex flex-col justify-center md:h-[600px] p-2'>
+        <div className="chart-container xl:w-[500px] xl:h-[500px] w-[300px] h-[300px] self-center">
             <Pie data={info} options={options} />
         </div>
     </div>

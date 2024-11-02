@@ -12,14 +12,14 @@ router.post('/create', async (req, res) => {
         const doesExist = await db.category.findFirst({
             where: {
                 name: name,
-                user_id: req.session.userId
+                user_id: user_id
             }
         })
 
         const colorExist = await db.category.findFirst({
             where: {
                 color: color,
-                user_id: req.session.userId
+                user_id: user_id
             }
         })
 
@@ -27,6 +27,7 @@ router.post('/create', async (req, res) => {
             res.status(409).json({
                 message: "Category with this color already exists"
             })
+            return
         }
 
         if(doesExist) {
@@ -36,7 +37,7 @@ router.post('/create', async (req, res) => {
             return
         }
 
-        const response = await db.category.create({
+        await db.category.create({
             data: {
                 name: name,
                 user_id: user_id,

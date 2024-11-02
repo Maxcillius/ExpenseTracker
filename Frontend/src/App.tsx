@@ -29,11 +29,13 @@ export default function App() {
         const response = async () => {
             try {
 
-                const { data } = await axios.get(`http://localhost:3000/api/v1/user/expense/getall`,
+                const { data } = await axios.get(`http://3.111.68.152:3000/api/v1/user/expense/getall`,
                     {
                         withCredentials: true
                     }
                 )
+
+                console.log(data)
 
                 setExpenses(data)
 
@@ -61,13 +63,13 @@ export default function App() {
     return (
         <>
             <div className='flex flex-row h-screen w-screen'>
-                <div className={`w-64 ${ isSidebar ? 'block' : 'hidden' } md:block absolute md:static z-10 bg-white md:w-80 flex flex-col h-screen`}>
+                <div className={`w-56 ${ isSidebar ? 'block' : 'hidden' } md:block absolute md:static z-10 bg-white md:w-80 flex flex-col h-screen`}>
                     <Sidebar />
                 </div>
                 <div className='flex flex-col justify-start z-0 w-full xl:flex-row h-screen'>
                     <div className='flex flex-col w-full'>
                         <div className='col-span-4'>
-                            <div className='grid grid-rows-1 grid-cols-3'>
+                            <div className='grid grid-rows-1 grid-cols-2 md:grid-cols-3 md:px-0 px-5'>
                                 <Header_Component color='sky' amount={`${thisMonth}`} title='This month'/>
                                 <Header_Component color='red' amount={`${totalSpent}`} title='Total Spent'/>
                                 {/* <Header_Component color='green' amount={'160,000'} title='Over Threshold'/> */}
@@ -80,7 +82,7 @@ export default function App() {
                             </div>
                         </div>
                     </div>
-                    <div className='flex flex-col'>
+                    <div className={`flex flex-col ${ expenses.length === 0 ? 'hidden' : 'block' }`}>
                         <Charts dataset={expenses}/>
                         {/* <div className='flex flex-col justify-center px-5'>
                             <h2 className='pt-4 pb-1 pl-4 font-semibold text-xl'>Threshold</h2>

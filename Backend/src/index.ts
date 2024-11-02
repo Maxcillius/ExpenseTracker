@@ -9,14 +9,14 @@ const router = express()
 const port = process.env.PORT || 4000
 const secret = process.env.JWT_SECRET as string
 
+const corsOptions = {
+  credentials: true,
+  origin: true,
+}
 
 router.use(express.json())
-router.use(cors({
-    credentials: true,
-    origin: [
-      "http://localhost:8080",
-    ]
-}))
+router.use(cors(corsOptions))
+router.options('*', cors(corsOptions));
 router.use(session({
     secret: secret,
     resave: false,

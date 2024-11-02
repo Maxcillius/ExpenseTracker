@@ -56,7 +56,7 @@ export default function AddExpense({getExpenses} : {getExpenses: () => void}) {
     const fetchCategories = useCallback(() => {
 
         const response = async () => {
-            const { data } = await axios.get(`http://localhost:3000/api/v1/user/category/getall`, 
+            const { data } = await axios.get(`http://3.111.68.152:3000/api/v1/user/category/getall`, 
                 {
                     withCredentials: true
                 }
@@ -96,7 +96,7 @@ export default function AddExpense({getExpenses} : {getExpenses: () => void}) {
 
        try {
 
-            await axios.post(`http://localhost:3000/api/v1/user/expense/add`,
+            await axios.post(`http://3.111.68.152:3000/api/v1/user/expense/add`,
                 {
                     amount: amount,
                     description: descripion,
@@ -131,7 +131,7 @@ export default function AddExpense({getExpenses} : {getExpenses: () => void}) {
                 <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-2">
                     <div className="flex md:flex-row justify-center gap-2 md:gap-5">
                         <div className="flex flex-col justify-start">
-                            <div onClick={() => {setCatDropDown(!catDropDown)}} className={`relative flex flex-col justify-center px-2 w-40 h-full md:px-10 border-2 ${emptyCategory ? 'border-red-600' : 'border-gray-300'} rounded-xl hover:cursor-pointer hover:border-black`}>
+                            <div onClick={() => {setCatDropDown(!catDropDown)}} className={`w-28 relative flex flex-col justify-center px-2 md:w-40 h-full md:px-10 border-2 ${emptyCategory ? 'border-red-600' : 'border-gray-300'} rounded-xl hover:cursor-pointer hover:border-black`}>
                                 <div className="flex flex-row text-sm md:text-md justify-center gap-1 md:gap-3">
                                     <p className="flex flex-col justify-center">
                                         {category.name}
@@ -147,7 +147,7 @@ export default function AddExpense({getExpenses} : {getExpenses: () => void}) {
                             }
                         </div>
                         <div className="flex flex-col justify-center relative">
-                            <IndianRupee className="absolute mx-2 size-5 border-r-2 border-gray-300"/>
+                            <IndianRupee className="absolute mx-2 size-4 md:size-5 border-r-2 border-gray-300"/>
                             <input onKeyDown={handleKeyDown} onChange={(e) => {
                                     const re = /^[0-9\b]+$/
                                 
@@ -173,10 +173,10 @@ export default function AddExpense({getExpenses} : {getExpenses: () => void}) {
                                 }
                             }} defaultValue={dayjs(`${year}-${month}-${day}`)} />
                         </div>
-                        <button onClick={handleAdd} className="text-sm md:text-md py-2 px-10 bg-black text-white font-bold rounded-xl">Add</button>
+                        <button onClick={handleAdd} className="text-sm md:text-md px-5 md:px-10 bg-black text-white font-bold rounded-xl">Add</button>
                     </div>
                 </div>
-                <textarea onChange={(e) => {setDescription(e.target.value)}} value={descripion} name="description" id="desc" placeholder="description" className="resize-none focus:outline-none outline-none hover:border-black text-slate-700"></textarea>
+                <textarea onChange={(e) => {setDescription(e.target.value)}} value={descripion} name="description" id="desc" placeholder="description" className="resize-none text-sm md:text-md focus:outline-none outline-none hover:border-black text-slate-700"></textarea>
             </div>
         </div>
     )
@@ -189,7 +189,7 @@ function ShowCategory({setCatDropDown}: {setCatDropDown: React.Dispatch<React.Se
     const categories = useRecoilValue(categoriesAtom)
 
     return (
-        <ul className="min-h-fit absolute w-40 max-h-52 z-10 mt-12 md:mt-16 bg-white border-2 border-gray-300 flex flex-col py-4 overflow-y-auto">
+        <ul className="min-h-fit absolute w-24 md:w-40 max-h-52 z-10 mt-12 md:mt-16 bg-white border-2 border-gray-300 flex flex-col py-4 overflow-y-auto">
             {
                 categories.map((data: Category) => {
                     return (
@@ -201,7 +201,7 @@ function ShowCategory({setCatDropDown}: {setCatDropDown: React.Dispatch<React.Se
                             setCatDropDown(false)
                             }
                             }
-                             className="text-black text-start pl-8 py-2 text-sm hover:bg-black hover:text-white hover:cursor-pointer">
+                             className="text-black text-start pl-8 py-2 text-[13px] md:text-sm hover:bg-black hover:text-white hover:cursor-pointer">
                                 {data.name}
                         </li>
                     )
