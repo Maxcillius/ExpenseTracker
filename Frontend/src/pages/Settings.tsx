@@ -4,13 +4,15 @@ import { useRecoilValue } from 'recoil'
 import { useEffect, useState } from 'react'
 import { categoriesAtom } from '../atoms/Data.ts'
 import Category from '../types/category.ts'
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import sessionInterface from '../types/session.ts'
 import { Trash } from 'lucide-react'
 import { useCallback } from 'react'
 import { useSetRecoilState } from 'recoil'
 import { categoryNameMap } from '../atoms/Data.ts'
 import { ChromePicker } from 'react-color'
+import { Toaster, toast } from 'sonner'
+import MyErrorResponse from '../types/Error.ts'
 
 export default function Settings() {
 
@@ -80,7 +82,11 @@ export default function Settings() {
             {
                 withCredentials: true
             }
-        )
+        ).then((data) => {
+            toast(data.data.message)
+        }).catch((data: AxiosError<MyErrorResponse>) => {
+            toast(data.response?.data.message)
+        })
 
         fetchCategories()
     }
@@ -94,6 +100,10 @@ export default function Settings() {
                 'id': id
             },
             withCredentials: true
+        }).then((data) => {
+            toast(data.data.message)
+        }).catch((data: AxiosError<MyErrorResponse>) => {
+            toast(data.response?.data.message)
         })
 
         fetchCategories()
@@ -102,6 +112,7 @@ export default function Settings() {
     return (
         <>
             <div className='flex flex-row h-screen w-screen'>
+                <Toaster />
                 <div className={`w-64 ${ isSidebar ? 'block' : 'hidden' } md:block absolute md:static z-10 bg-white w-[13rem] md:w-80 flex flex-col h-full`}>
                     <Sidebar />
                 </div>
