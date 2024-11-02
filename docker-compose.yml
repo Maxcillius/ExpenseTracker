@@ -1,18 +1,6 @@
 version: '3.8'
 
 services:
-  frontend:
-    build:
-      context: ./Frontend
-      dockerfile: Dockerfile
-    container_name: expense-tracker-Frontend
-    ports:
-      - '5173:5173'
-    volumes: 
-      - ./Frontend:/app
-    depends_on:
-      - backend 
-
   backend:
     build:
       context: ./Backend
@@ -22,13 +10,15 @@ services:
       - '3000:3000'
     volumes:
       - ./Backend:/app
+      - /app/dist
     environment:
       - DATABASE_URL=postgresql://postgres:mysecretpassword@db:5432/user?schema=public
     depends_on:
       db:
         condition: service_healthy
+    networks:
+      - app-network
 
-  
   db:
     image: postgres:alpine
     container_name: postgresql
@@ -46,6 +36,12 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
 
 volumes:
   postgres-data:
