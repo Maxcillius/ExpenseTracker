@@ -9,17 +9,7 @@ const router = express()
 const port = process.env.PORT || 4000
 const secret = process.env.JWT_SECRET as string
 
-const corsOptions = {
-  credentials: true,
-  origin: 'https://expense-tracker-alpha-coral.vercel.app',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Authorization', 'Content-Type', 'Accept', 'Origin', 'User-Agent', 'DNT', 'Cache-Control', 'X-Mx-ReqToken', 'Keep-Alive', 'X-Requested-With', 'If-Modified-Since', 'Cookie'],
-  exposedHeaders: ['set-cookie']
-};
-
 router.use(express.json())
-router.use(cors(corsOptions))
-router.options('*', cors(corsOptions));
 
 // Session configuration
 router.use(session({
