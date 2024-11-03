@@ -11,7 +11,7 @@ const secret = process.env.JWT_SECRET as string
 
 const corsOptions = {
   credentials: true,
-  origin: true,
+  origin: "https://expense-tracker-omega-lake.vercel.app"
 }
 
 router.use(express.json())

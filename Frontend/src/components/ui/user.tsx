@@ -9,7 +9,7 @@ export default function User() {
 
     useEffect(() => {
         const handleUserData = async () => {
-            const { data } = await axios.get(`https://3.111.68.152:3000/api/v1/auth/user/authenticated`, 
+            const { data } = await axios.get(`http://3.111.68.152:3000/api/v1/auth/user/authenticated`, 
                 {
                 withCredentials: true
                }
