@@ -11,7 +11,7 @@ const secret = process.env.JWT_SECRET as string
 
 const corsOptions = {
   credentials: true,
-  origin: 'https://expense-tracker-omega-lake.vercel.app',
+  origin: 'https://expense-tracker-alpha-coral.vercel.app',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Authorization', 'Content-Type', 'Accept', 'Origin', 'User-Agent', 'DNT', 'Cache-Control', 'X-Mx-ReqToken', 'Keep-Alive', 'X-Requested-With', 'If-Modified-Since', 'Cookie'],
   exposedHeaders: ['set-cookie']

@@ -22,7 +22,7 @@ export default function Analysis() {
         const response = async () => {
             try {
 
-                const { data } = await axios.get(`https://3.111.68.152:3000/api/v1/user/expense/getall`,
+                const { data } = await axios.get(`https://www.oldmanmcgucket.xyz/api/v1/user/expense/getall`,
                     {
                         withCredentials: true
                     }
