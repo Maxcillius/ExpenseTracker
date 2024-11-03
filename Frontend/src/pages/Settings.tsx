@@ -30,7 +30,7 @@ export default function Settings() {
 
     useEffect(() => {
         const response = async () => {
-            const sessionData = await axios.get(`http://3.111.68.152:3000/api/v1/auth/user/authenticated`, {
+            const sessionData = await axios.get(`https://3.111.68.152:3000/api/v1/auth/user/authenticated`, {
                 withCredentials: true
             })
             setSession(sessionData.data)
@@ -43,7 +43,7 @@ export default function Settings() {
     const fetchCategories = useCallback(() => {
 
         const response = async () => {
-            const { data } = await axios.get(`http://3.111.68.152:3000/api/v1/user/category/getall`, 
+            const { data } = await axios.get(`https://3.111.68.152:3000/api/v1/user/category/getall`, 
                 {
                     withCredentials: true
                 }
@@ -72,7 +72,7 @@ export default function Settings() {
             }, 500)
         }
 
-        await axios.post(`http://3.111.68.152:3000/api/v1/user/category/create`, 
+        await axios.post(`https://3.111.68.152:3000/api/v1/user/category/create`, 
             {
                 name: category,
                 user_id: session?.user.uid,
@@ -95,7 +95,7 @@ export default function Settings() {
 
         console.log(id)
 
-        await axios.delete(`http://3.111.68.152:3000/api/v1/user/category/delete`, {
+        await axios.delete(`https://3.111.68.152:3000/api/v1/user/category/delete`, {
             headers: {
                 'id': id
             },
