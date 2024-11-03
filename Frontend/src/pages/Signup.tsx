@@ -15,7 +15,7 @@ export default function Signup() {
 
     const handleAuth = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        await axios.post(`http://3.111.68.152:3000/api/v1/auth/user/signup`, {
+        await axios.post(`https://3.111.68.152:3000/api/v1/auth/user/signup`, {
             email,
             password,
             name    
