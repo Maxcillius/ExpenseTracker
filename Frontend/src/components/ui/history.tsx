@@ -95,7 +95,7 @@ const ExpenseHistory: React.FC<ExpenseHistoryProps> = ({ transactions, getExpens
     const handleDeleteExpense = async (id: number): Promise<void> => {
         try {
             await axios.post(
-                `https://3.111.68.152:3000/api/v1/user/expense/delete`, 
+                `http://3.111.68.152:3000/api/v1/user/expense/delete`, 
                 { id }, 
                 { withCredentials: true }
             ).then((data) => {
