@@ -56,7 +56,7 @@ export default function AddExpense({getExpenses} : {getExpenses: () => void}) {
     const fetchCategories = useCallback(() => {
 
         const response = async () => {
-            const { data } = await axios.get(`https://3.111.68.152:3000/api/v1/user/category/getall`, 
+            const { data } = await axios.get(`http://3.111.68.152:3000/api/v1/user/category/getall`, 
                 {
                     withCredentials: true
                 }
@@ -96,7 +96,7 @@ export default function AddExpense({getExpenses} : {getExpenses: () => void}) {
 
        try {
 
-            await axios.post(`https://3.111.68.152:3000/api/v1/user/expense/add`,
+            await axios.post(`http://3.111.68.152:3000/api/v1/user/expense/add`,
                 {
                     amount: amount,
                     description: descripion,
