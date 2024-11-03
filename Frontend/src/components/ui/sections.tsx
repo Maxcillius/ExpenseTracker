@@ -24,7 +24,7 @@ export default function Sections() {
     }, [])
 
     const handleLogout = async () => {
-        await axios.get(`https://3.111.68.152:3000/api/v1/auth/user/signout`, {
+        await axiosget(`http://3.111.68.152:3000/api/v1/auth/user/signout`, {
             withCredentials: true
         })
         navigate("/auth/signin")
