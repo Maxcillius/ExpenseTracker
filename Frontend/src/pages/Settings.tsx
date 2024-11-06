@@ -7,7 +7,7 @@ import Category from '../types/category.ts'
 import axios, { AxiosError } from 'axios'
 import sessionInterface from '../types/session.ts'
 import { Trash } from 'lucide-react'
-import { useCallback } from 'react'
+import { useCallback, useRef } from 'react'
 import { useSetRecoilState } from 'recoil'
 import { categoryNameMap } from '../atoms/Data.ts'
 import { ChromePicker } from 'react-color'
@@ -25,6 +25,8 @@ export default function Settings() {
     const setCategoryMap = useSetRecoilState(categoryNameMap)
     const [ color, setColor ] = useState('#c45149')
     const [ isColorPick, setColorPick ] = useState(false)
+    const [isOpen, setIsOpen] = useState<boolean>(true);
+    const pickerRef = useRef<HTMLDivElement | null>(null);
 
      
 
@@ -37,8 +39,18 @@ export default function Settings() {
         }
 
         response()
-    }, [])
 
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []) 
+
+    const handleClickOutside = (event: MouseEvent) => {
+        if (pickerRef.current && !pickerRef.current.contains(event.target as Node)) {
+            setIsOpen(false);
+        }
+    };
 
     const fetchCategories = useCallback(() => {
 
@@ -145,10 +157,15 @@ export default function Settings() {
                             style={{ backgroundColor: color }}
                             className={`relative w-56 rounded-lg hover:cursor-pointer`}>
                                 {
-                                    isColorPick && 
-                                    <ChromePicker className='absolute' color={color} onChange={(e) => {
-                                        setColor(e.hex)
-                                    }}/>
+                                <div ref={pickerRef} onClick={(e) => e.stopPropagation()} className="absolute right-9">
+                                    {isOpen && (
+                                        <ChromePicker
+                                            disableAlpha
+                                            color={color}
+                                            onChange={(e) => {setColor(e.hex)}}
+                                        />
+                                    )}
+                                </div>
                                 }
                             </div>
                         </div>

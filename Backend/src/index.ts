@@ -11,16 +11,24 @@ const secret = process.env.JWT_SECRET as string
 
 router.use(express.json())
 
-// Session configuration
+router.use(cors({
+  origin: ['https://expense-tracker-alpha-coral.vercel.app', 'http://localhost:5173'],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Authorization', 'Content-Type', 'Accept', 'Origin', 'User-Agent', 'DNT', 'Cache-Control', 'X-Mx-ReqToken', 'Keep-Alive', 'X-Requested-With',  
+ 'If-Modified-Since', 'Cookie', 'Set-Cookie'],
+  exposedHeaders: ['Content-Length', 'Content-Range']
+}));
+
 router.use(session({
   secret: secret,
   resave: false,
   saveUninitialized: false,
   cookie: {
-    secure: true, // For HTTPS
+    secure: false, // For HTTPS
     httpOnly: true,
     maxAge: 1000 * 60 * 60 * 24 * 30,
-    sameSite: 'none'  // Important for cross-origin cookies
+    // sameSite: 'none'  // Important for cross-origin cookies
   },
 }))
 
