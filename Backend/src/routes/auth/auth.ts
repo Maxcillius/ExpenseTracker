@@ -50,6 +50,8 @@ router.post(('/user/signin'), async (req, res) => {
         req.session.email = response?.email
 
 
+        console.log(req.session)
+
         if(response) {
             res.status(200).json({
                 message: 'Successfully logged in',
@@ -90,6 +92,18 @@ router.post(('/user/signup'), async (req, res) => {
 
     if(!validate.success) {
 
+        if(password.length > 28) {
+            res.status(401).json({
+                message: "Password too long"
+            })
+            return
+        } else if(password.length < 6) {
+            res.status(401).json({
+                message: "Password too short"
+            })
+            return
+        }
+
         res.status(401).json({
             message: 'Credential format invalid'
         })
@@ -124,6 +138,8 @@ router.post(('/user/signup'), async (req, res) => {
         req.session.name = response?.name
         req.session.userId = response?.id
         req.session.email = response?.email
+
+        console.log(req.session)
 
         res.status(200).json({
             message: 'Successfully signed up',

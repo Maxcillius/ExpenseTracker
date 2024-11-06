@@ -7,7 +7,7 @@ const UserSignup = zod.object({
 })
 
 const UserSignin = zod.object({
-    password:           zod.string().min(6).max(28),
+    password:           zod.string(),
     email:              zod.string().email(),
 })
 
