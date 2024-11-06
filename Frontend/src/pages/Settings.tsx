@@ -152,7 +152,7 @@ export default function Settings() {
                         <div className='flex flex-row gap-5 md:gap-10'>
                             <input type="text" onChange={(e) => {setCategory(e.target.value)}}  className={`text-sm md:text-lg focus:outline-none w-32 md:w-64 rounded-lg border-2 ${ alert ? 'border-red-700' : 'border-slate-300'}`} placeholder='Category name'/>
                             <button onClick={handleSubmit} className='px-2 py-1 md:py-2 md:px-4 bg-green-300 text-sm md:text-lg rounded-lg'>Add</button>
-                            <div onClick={() => {setIsOpen(!isOpen)}}
+                            <div onClick={() => {setIsOpen(false)}}
                             style={{ backgroundColor: color }}
                             className={`relative w-56 rounded-lg hover:cursor-pointer`}>
                                 {
